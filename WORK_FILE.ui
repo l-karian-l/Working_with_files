@@ -10,6 +10,18 @@
     <height>664</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>911</width>
+    <height>664</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>911</width>
+    <height>664</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Работа с файлами</string>
   </property>
@@ -152,6 +164,7 @@ color: rgb(57, 88, 134);</string>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -272,6 +285,7 @@ color: rgb(57, 88, 134);</string>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -390,6 +404,7 @@ color: rgb(57, 88, 134);</string>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -537,6 +552,7 @@ color: rgb(57, 88, 134);</string>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -616,6 +632,7 @@ color: rgb(57, 88, 134);</string>
    </property>
    <property name="font">
     <font>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>

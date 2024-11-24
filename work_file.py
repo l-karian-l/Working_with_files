@@ -39,9 +39,12 @@ class FileWindow(QtWidgets.QDialog):
 
     #Выбор директории
     def all_dir(self, line_edit):
-        path_dir = QFileDialog.getExistingDirectory()
-        if path_dir:
-            line_edit.setText(path_dir)
+        try:
+            path_dir = QFileDialog.getExistingDirectory(self, "Выберите директорию", self.home_path)
+            if path_dir:
+                line_edit.setText(path_dir)
+        except Exception as e:
+            self.show_error(f"Ошибка при выборе директории: {e}")
 
     # Создает пустой файл
     def create_file(self): 
