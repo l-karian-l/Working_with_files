@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
 from file_info import InfoWindow
 from work_file import FileWindow
 from json_file import JsonWindow
 from xml_file import XmlWindow
+from zip_file import ZipWindow
 from PyQt5 import uic
 import sys
 
@@ -17,8 +17,7 @@ class FirstWindow(QtWidgets.QDialog):
             self.btn_file.clicked.connect(self.file)
             self.btn_json.clicked.connect(self.json_f)
             self.btn_xml.clicked.connect(self.xml_f)
-
-
+            self.btn_zip.clicked.connect(self.zip_f)
 
         def info(self):
             self.info_file = InfoWindow()
@@ -40,9 +39,10 @@ class FirstWindow(QtWidgets.QDialog):
             self.x_file.show()
             self.hide()
 
-
-
-
+        def zip_f(self):
+            self.z_file = ZipWindow()
+            self.z_file.show()
+            self.hide()
 
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)

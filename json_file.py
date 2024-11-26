@@ -152,6 +152,10 @@ class JsonWindow(QtWidgets.QDialog):
         if not filepath:
             self.show_error("Не указан путь для файла.")
             return
+        
+        if not filepath.lower().endswith('.json'):
+            self.show_error("Можно читать только JSON-файлы.")
+            return
 
         try:
             with open(filepath, "r", encoding="utf-8") as file:
@@ -166,10 +170,21 @@ class JsonWindow(QtWidgets.QDialog):
     # Удаление файла
     def delete_json_file(self):
         filepath = self.lE_delete_filepath.text().strip()
+        filepath_w = self.lE_write_filepath.text().strip()
+        filepath_r = self.lE_read_filepath.text().strip()
 
         if not filepath:
             self.show_error("Не указан путь для файла.")
             return
+        
+        if not filepath.lower().endswith('.json'):
+            self.show_error("Можно удалять только JSON-файлы.")
+            return
+        
+        if filepath == filepath_w:
+                self.lE_write_filepath.setText("")
+        if filepath == filepath_r:
+                self.lE_read_filepath.setText("")
         
         try:
             os.remove(filepath)
@@ -190,7 +205,8 @@ class JsonWindow(QtWidgets.QDialog):
     
     # Добавляет сообщение об операции в текстовое поле `tE_infa`.
     def log_action(self, message):
-        self.create_info += message + "\n"
+        self.create_info += "\n ----------------------- -----------------------"
+        self.create_info +="\n" + message + "\n"
         self.tE_infa.setPlainText(self.create_info)
 
     #Для выхода

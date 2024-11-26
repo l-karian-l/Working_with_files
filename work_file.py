@@ -65,7 +65,6 @@ class FileWindow(QtWidgets.QDialog):
         except Exception as e:
             self.show_error(f"Не удалось создать файл: {e}")
 
-
     # Записать в файл строку
     def write_file(self): 
         filepath = self.lE_write_filepath.text().strip()
@@ -84,7 +83,6 @@ class FileWindow(QtWidgets.QDialog):
                 file.write(text)
             self.log_action(f"Строка '{text}' записана в файл '{filepath}'.")
             self.lE_write_text.setText("")
-            self.lE_write_filepath.setText("")
         except Exception as e:
             self.show_error(f"Ошибка записи в файл: {e}")
          
@@ -96,21 +94,37 @@ class FileWindow(QtWidgets.QDialog):
             self.show_error("Не указан путь для файла.")
             return
 
+                # Проверяем, что файл имеет расширение .txt
+        if not filepath.lower().endswith('.txt'):
+            self.show_error("Можно читать только TXT-файлы.")
+            return
+
         try:
             with open(filepath, 'r') as file:
                 content = file.read()
             self.log_action(f"Содержимое файла '{filepath}':\n{content}")
-            self.lE_read_filepath.setText("")
         except Exception as e:
             self.show_error(f"Ошибка чтения файла: {e}")
 
     # Удаляет указанный файл
     def delete_file(self):
         filepath = self.lE_delete_filepath.text().strip()
+        filepath_w = self.lE_write_filepath.text().strip()
+        filepath_r = self.lE_read_filepath.text().strip()
 
         if not filepath:
             self.show_error("Не указан путь для файла.")
             return
+        
+        # Проверяем, что файл имеет расширение .txt
+        if not filepath.lower().endswith('.txt'):
+            self.show_error("Можно удалять только TXT-файлы.")
+            return
+        
+        if filepath == filepath_w:
+                self.lE_write_filepath.setText("")
+        if filepath == filepath_r:
+                self.lE_read_filepath.setText("")
 
         try:
             os.remove(filepath)
@@ -121,7 +135,8 @@ class FileWindow(QtWidgets.QDialog):
             
     # Добавляет сообщение об операции в текстовое поле `tE_infa`.
     def log_action(self, message):
-        self.create_info += message + "\n"
+        self.create_info += "\n ----------------------- -----------------------"
+        self.create_info +="\n" + message + "\n"
         self.tE_infa.setPlainText(self.create_info)
 
     # Отображает сообщение об ошибке в виде всплывающего окна.
