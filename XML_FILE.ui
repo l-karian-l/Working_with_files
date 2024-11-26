@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>xml_file</class>
+ <widget class="QDialog" name="xml_file">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>911</width>
-    <height>531</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>911</width>
-    <height>531</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -22,35 +22,39 @@
     <height>531</height>
    </size>
   </property>
-  <property name="font">
-   <font>
-    <family>Sitka Small</family>
-    <pointsize>11</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Работа с форматом XML</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(240, 243, 250);</string>
   </property>
-  <widget class="Line" name="line">
+  <widget class="QPushButton" name="btn_exit">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>441</width>
-     <height>16</height>
+     <x>220</x>
+     <y>450</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(138, 174, 224);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Назад</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>570</x>
+     <x>590</x>
      <y>10</y>
      <width>241</width>
      <height>21</height>
@@ -74,27 +78,17 @@ color: rgb(57, 88, 134);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_exit">
+  <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>490</y>
-     <width>111</width>
-     <height>31</height>
+     <x>10</x>
+     <y>60</y>
+     <width>511</width>
+     <height>16</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(138, 174, 224);
-color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>Назад</string>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -102,7 +96,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>421</width>
+     <width>491</width>
      <height>31</height>
     </rect>
    </property>
@@ -118,10 +112,24 @@ color: rgb(255, 255, 255);</string>
 color: rgb(57, 88, 134);</string>
    </property>
    <property name="text">
-    <string>3. Работа с форматом JSON (модуль json)</string>
+    <string>4. Работа с форматом XML (модуль xml.etree.ElementTree)</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="tE_infa">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>40</y>
+     <width>351</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(57, 88, 134);</string>
    </property>
   </widget>
   <widget class="QToolBox" name="toolBox">
@@ -129,8 +137,8 @@ color: rgb(57, 88, 134);</string>
     <rect>
      <x>20</x>
      <y>80</y>
-     <width>441</width>
-     <height>401</height>
+     <width>501</width>
+     <height>291</height>
     </rect>
    </property>
    <property name="font">
@@ -152,12 +160,12 @@ color: rgb(57, 88, 134);
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>441</width>
-      <height>261</height>
+      <width>501</width>
+      <height>151</height>
      </rect>
     </property>
     <attribute name="label">
-     <string>Создать пустой текстовый файл</string>
+     <string>Создание пустого XML-файла</string>
     </attribute>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -191,7 +199,7 @@ color: rgb(57, 88, 134);
       <rect>
        <x>100</x>
        <y>0</y>
-       <width>301</width>
+       <width>361</width>
        <height>21</height>
       </rect>
      </property>
@@ -203,7 +211,7 @@ color: rgb(57, 88, 134);</string>
     <widget class="QToolButton" name="tB_create_filepath">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>470</x>
        <y>0</y>
        <width>21</width>
        <height>21</height>
@@ -248,7 +256,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>120</x>
        <y>30</y>
-       <width>281</width>
+       <width>341</width>
        <height>21</height>
       </rect>
      </property>
@@ -260,8 +268,8 @@ color: rgb(57, 88, 134);</string>
     <widget class="QPushButton" name="btn_create">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>220</y>
+       <x>380</x>
+       <y>60</y>
        <width>111</width>
        <height>31</height>
       </rect>
@@ -280,180 +288,18 @@ color: rgb(255, 255, 255);</string>
       <string>Создать</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>100</y>
-       <width>211</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Sitka Small</family>
-       <pointsize>11</pointsize>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Записать в файл:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cB_create">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>60</y>
-       <width>71</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Записать</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>160</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Sitka Small</family>
-       <pointsize>11</pointsize>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Автор:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lE_write_text">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>160</y>
-       <width>331</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(57, 88, 134);</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_13">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>190</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Sitka Small</family>
-       <pointsize>11</pointsize>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Картина:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lE_write_text2">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>190</y>
-       <width>331</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(57, 88, 134);</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>130</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Sitka Small</family>
-       <pointsize>11</pointsize>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Ключ:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lE_write_key1">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>130</y>
-       <width>331</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(57, 88, 134);</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="page_2">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>441</width>
-      <height>261</height>
+      <width>501</width>
+      <height>151</height>
      </rect>
     </property>
     <attribute name="label">
-     <string>Записать в уже существующий файл</string>
+     <string>Добавить данные</string>
     </attribute>
     <widget class="QLabel" name="label_14">
      <property name="geometry">
@@ -475,58 +321,18 @@ color: rgb(57, 88, 134);</string>
       <string notr="true">background-color: rgb(240, 243, 250);</string>
      </property>
      <property name="text">
-      <string>Автор:</string>
+      <string>Текст:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lE_write_text3">
+    <widget class="QLineEdit" name="lE_write_text">
      <property name="geometry">
       <rect>
        <x>100</x>
        <y>90</y>
-       <width>321</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(57, 88, 134);</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_15">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Sitka Small</family>
-       <pointsize>11</pointsize>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(240, 243, 250);</string>
-     </property>
-     <property name="text">
-      <string>Картина:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lE_write_text4">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>120</y>
-       <width>321</width>
+       <width>391</width>
        <height>21</height>
       </rect>
      </property>
@@ -538,8 +344,8 @@ color: rgb(57, 88, 134);</string>
     <widget class="QPushButton" name="btn_write">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>150</y>
+       <x>380</x>
+       <y>120</y>
        <width>111</width>
        <height>31</height>
       </rect>
@@ -589,7 +395,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>100</x>
        <y>10</y>
-       <width>301</width>
+       <width>361</width>
        <height>21</height>
       </rect>
      </property>
@@ -601,7 +407,7 @@ color: rgb(57, 88, 134);</string>
     <widget class="QToolButton" name="tB_write_filepath">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>470</x>
        <y>10</y>
        <width>21</width>
        <height>21</height>
@@ -620,7 +426,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>421</width>
+       <width>481</width>
        <height>16</height>
       </rect>
      </property>
@@ -648,18 +454,18 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">background-color: rgb(240, 243, 250);</string>
      </property>
      <property name="text">
-      <string>Ключ:</string>
+      <string>Тег:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lE_write_key">
+    <widget class="QLineEdit" name="lE_write_teg">
      <property name="geometry">
       <rect>
        <x>100</x>
        <y>60</y>
-       <width>321</width>
+       <width>391</width>
        <height>21</height>
       </rect>
      </property>
@@ -674,8 +480,8 @@ color: rgb(57, 88, 134);</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>441</width>
-      <height>261</height>
+      <width>501</width>
+      <height>151</height>
      </rect>
     </property>
     <attribute name="label">
@@ -684,7 +490,7 @@ color: rgb(57, 88, 134);</string>
     <widget class="QPushButton" name="btn_read">
      <property name="geometry">
       <rect>
-       <x>320</x>
+       <x>380</x>
        <y>40</y>
        <width>111</width>
        <height>31</height>
@@ -707,7 +513,7 @@ color: rgb(255, 255, 255);</string>
     <widget class="QToolButton" name="tB_read_filepath">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>470</x>
        <y>10</y>
        <width>21</width>
        <height>21</height>
@@ -752,7 +558,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>100</x>
        <y>10</y>
-       <width>301</width>
+       <width>361</width>
        <height>21</height>
       </rect>
      </property>
@@ -767,8 +573,8 @@ color: rgb(57, 88, 134);</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>441</width>
-      <height>261</height>
+      <width>501</width>
+      <height>151</height>
      </rect>
     </property>
     <attribute name="label">
@@ -803,7 +609,7 @@ color: rgb(57, 88, 134);</string>
     <widget class="QToolButton" name="tB_delete_filepath">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>470</x>
        <y>10</y>
        <width>21</width>
        <height>21</height>
@@ -822,7 +628,7 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>100</x>
        <y>10</y>
-       <width>301</width>
+       <width>361</width>
        <height>21</height>
       </rect>
      </property>
@@ -834,7 +640,7 @@ color: rgb(57, 88, 134);</string>
     <widget class="QPushButton" name="btn_delete">
      <property name="geometry">
       <rect>
-       <x>320</x>
+       <x>380</x>
        <y>40</y>
        <width>111</width>
        <height>31</height>
@@ -855,20 +661,6 @@ color: rgb(255, 255, 255);</string>
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QTextEdit" name="tE_infa">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>40</y>
-     <width>411</width>
-     <height>481</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(57, 88, 134);</string>
-   </property>
   </widget>
  </widget>
  <resources/>

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMessageBox
 from file_info import InfoWindow
 from work_file import FileWindow
 from json_file import JsonWindow
+from xml_file import XmlWindow
 from PyQt5 import uic
 import sys
 
@@ -15,6 +16,8 @@ class FirstWindow(QtWidgets.QDialog):
             self.btn_infa.clicked.connect(self.info)
             self.btn_file.clicked.connect(self.file)
             self.btn_json.clicked.connect(self.json_f)
+            self.btn_xml.clicked.connect(self.xml_f)
+
 
 
         def info(self):
@@ -30,6 +33,11 @@ class FirstWindow(QtWidgets.QDialog):
         def json_f(self):
             self.jsn_file = JsonWindow()
             self.jsn_file.show()
+            self.hide()
+
+        def xml_f(self):
+            self.x_file = XmlWindow()
+            self.x_file.show()
             self.hide()
 
 

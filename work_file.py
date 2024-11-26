@@ -9,12 +9,12 @@ class FileWindow(QtWidgets.QDialog):
         uic.loadUi('WORK_FILE.ui', self)
 
         self.create_info = ""
-        home_path = os.path.expanduser("~")
+        self.home_path = os.path.expanduser("~")
     
     # Функционал  
         # Первоначальная настройка lineedit
         self.lE_create_filepath.setReadOnly(True) # задача "Создать файл"
-        self.lE_create_filepath.setText(home_path)
+        self.lE_create_filepath.setText(self.home_path)
         
         self.lE_write_filepath.setReadOnly(True) # задача "Записать в файл строку"
         self.lE_read_filepath.setReadOnly(True) # задача "Прочитать файл"
@@ -48,8 +48,8 @@ class FileWindow(QtWidgets.QDialog):
 
     # Создает пустой файл
     def create_file(self): 
-        path = self.lE_create_filepath.text()
-        name = self.lE_create_name.text()
+        path = self.lE_create_filepath.text().strip()
+        name = self.lE_create_name.text().strip()
 
         if not name:
             self.show_error("Не задано имя файла.")
@@ -61,14 +61,15 @@ class FileWindow(QtWidgets.QDialog):
             with open(filepath, 'w') as file:
                 pass
             self.log_action(f"Файл '{filepath}' успешно создан.")
+            self.lE_create_name.setText("")
         except Exception as e:
             self.show_error(f"Не удалось создать файл: {e}")
 
 
     # Записать в файл строку
     def write_file(self): 
-        filepath = self.lE_write_filepath.text()
-        text = self.lE_write_text.text()
+        filepath = self.lE_write_filepath.text().strip()
+        text = self.lE_write_text.text().strip()
         text += "\n"
 
         if not filepath:
@@ -82,43 +83,39 @@ class FileWindow(QtWidgets.QDialog):
             with open(filepath, 'a') as file:
                 file.write(text)
             self.log_action(f"Строка '{text}' записана в файл '{filepath}'.")
+            self.lE_write_text.setText("")
+            self.lE_write_filepath.setText("")
         except Exception as e:
             self.show_error(f"Ошибка записи в файл: {e}")
          
     #Прочитать файл
     def read_file(self): 
-        filepath = self.lE_read_filepath.text()
+        filepath = self.lE_read_filepath.text().strip()
 
         if not filepath:
             self.show_error("Не указан путь для файла.")
-            return
-
-        if not os.path.exists(filepath):
-            self.show_error("Файл не существует.")
             return
 
         try:
             with open(filepath, 'r') as file:
                 content = file.read()
             self.log_action(f"Содержимое файла '{filepath}':\n{content}")
+            self.lE_read_filepath.setText("")
         except Exception as e:
             self.show_error(f"Ошибка чтения файла: {e}")
 
     # Удаляет указанный файл
     def delete_file(self):
-        filepath = self.lE_delete_filepath.text()
+        filepath = self.lE_delete_filepath.text().strip()
 
         if not filepath:
             self.show_error("Не указан путь для файла.")
             return
 
-        if not os.path.exists(filepath):
-            self.show_error("Файл не существует.")
-            return
-
         try:
             os.remove(filepath)
             self.log_action(f"Файл '{filepath}' успешно удален.")
+            self.lE_delete_filepath.setText("")
         except Exception as e:
             self.show_error(f"Ошибка удаления файла: {e}")
             
