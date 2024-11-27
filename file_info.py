@@ -38,17 +38,14 @@ class InfoWindow(QtWidgets.QDialog):
                     disk_info += f"Метка тома: {partition.device}\n"
                     disk_info += f"Размер: {usage.total // (1024 ** 3)} ГБ\n"
                     disk_info += f"Свободно: {usage.free // (1024 ** 3)} ГБ\n"
-                
                 # Если нет доступа к разделу, добавляем соответствующее сообщение
                 except PermissionError:    
                     disk_info += "Нет доступа к разделу\n"
-                
                 #Если ошибка приполучении данных
                 except Exception as e:
                     disk_info += f"Ошибка при получении данных: {e}\n"
                 
-                disk_info += "-" * 30 + "\n"
-        
+                disk_info += "-" * 30 + "\n" 
         except Exception as e:
             disk_info += f"Ошибка при получении списка дисков: {e}\n"
 

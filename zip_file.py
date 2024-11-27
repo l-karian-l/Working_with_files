@@ -1,5 +1,6 @@
 import os
 import zipfile
+from functools import partial # Позволяет зафиксировать значения аргументов для вызова функции
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5 import QtWidgets
@@ -30,14 +31,14 @@ class ZipWindow(QtWidgets.QDialog):
 
         self.btn_create.setEnabled(False)
         self.btn_create.clicked.connect(self.create_zip_arc) # Создание файла
-        self.cB_all_f.stateChanged.connect(lambda: self.select_all_file(self.tableWidget_file)) # Check box 1"Выбрать все"
+        self.cB_all_f.stateChanged.connect(partial(self.select_all_file, self.tableWidget_file)) # Check box 1"Выбрать все"
         self.tB_create_filepath.clicked.connect(lambda: self.all_dir(self.lE_create_filepath, self.tableWidget_file ))
        
         self.btn_write.setEnabled(False)
         self.btn_write.clicked.connect(self.write_zip_file)  # Записать в файл строку
         self.tB_write_filepath_zip.clicked.connect(lambda: self.all_file(self.lE_write_filepath_zip))
         self.tB_write_filepath_file.clicked.connect(lambda: self.all_dir(self.lE_write_filepath_files, self.tableWidget_file_2))
-        self.cB_all_f_2.stateChanged.connect(lambda: self.select_all_file(self.tableWidget_file_2)) # Check box "Выбрать все"
+        self.cB_all_f_2.stateChanged.connect(partial(self.select_all_file, self.tableWidget_file_2)) # Check box "Выбрать все"
 
         self.btn_unzip.clicked.connect(self.unzip_file)  # Разархивировать файл
         self.tB_unzip_filepath.clicked.connect(lambda: self.all_file(self.lE_unzip_filepath))
@@ -93,10 +94,11 @@ class ZipWindow(QtWidgets.QDialog):
             self.show_error(f"Ошибка при загрузке файлов в таблицу: {e}")
 
     # Выставление значений при нажатии на check box "Выбрать все"
-    def select_all_file(self, state, table_Widget):
+    def select_all_file(self, table_Widget, state):
         for row in range(table_Widget.rowCount()):
             item = table_Widget.item(row, 0)
-            item.setCheckState(Qt.Checked if state == Qt.Checked else Qt.Unchecked)
+            if item:  # Проверка, что элемент существует
+                item.setCheckState(Qt.Checked if state == Qt.Checked else Qt.Unchecked)
 
     # Проверка состояния чекбоксов и активность кнопок
     def update_f_tab(self, cB, btn, table_Widget ):
@@ -136,10 +138,14 @@ class ZipWindow(QtWidgets.QDialog):
                 if item.checkState() == Qt.Checked:
                     checked_items.append(item.text())
 
+            # Создание архива в режиме записи
             with zipfile.ZipFile(filepath, 'w') as zipf:    
                 for file_path in checked_items:
+                    # Формирование полного пути к файлу
                     full_path = os.path.join(path, file_path)
+                    # Проверка: существует ли файл
                     if os.path.exists(full_path):                             
+                        # Добавление файла в архив с сохранением только имени файла (без пути)
                         zipf.write(full_path, arcname=os.path.basename(file_path))
                     else:
                         self.show_error(f"Файл '{file_path}' не найден и не будет добавлен в архив.")
@@ -176,6 +182,7 @@ class ZipWindow(QtWidgets.QDialog):
                 for file_path in checked_items:
                     full_path = os.path.join(path1, file_path)
                     if os.path.exists(full_path):                             
+                        # Добавление файла в архив с сохранением только имени файла (без пути)
                         zipf.write(full_path, arcname=os.path.basename(file_path))
                     else:
                         self.show_error(f"Файл '{file_path}' не найден и не будет добавлен в архив.")
@@ -199,15 +206,19 @@ class ZipWindow(QtWidgets.QDialog):
 
             # Открываем архив и извлекаем содержимое
             with zipfile.ZipFile(archive, 'r') as zipf:
+                # Извлечение всех файлов из архива в указанную директорию
                 zipf.extractall(where)
-                extracted_files = zipf.namelist() # Получаем список файлов из архива
+                # Получаем список файлов из архива
+                extracted_files = zipf.namelist() 
 
                  # Формируем информацию о файлах
                 file_info = []
                 for file_name in extracted_files:
                     file_path = os.path.join(where, file_name)
                     if os.path.exists(file_path):
+                        # Получение размера файла
                         size = os.path.getsize(file_path)
+                        # Добавление информации о файле в список
                         file_info.append(f"Имя: {file_name}, Размер: {size} байт, Путь: {file_path}")
                 self.log_action("Файлы успешно извлечены:\n\n" + "\n".join(file_info))
                 self.lE_unzip_filepath.setText("")

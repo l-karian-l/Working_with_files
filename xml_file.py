@@ -95,7 +95,8 @@ class XmlWindow(QtWidgets.QDialog):
     def create_xml_file(self):
         path = self.lE_create_filepath.text().strip()
         name = self.lE_create_name.text().strip()
-        self.spinbx_new += 1
+        # Увеличение счетчика для уникальных идентификаторов секций
+        self.spinbx_new += 1 
 
         if not name:
             self.show_error("Не задано имя файла.")
@@ -104,10 +105,15 @@ class XmlWindow(QtWidgets.QDialog):
         filepath = os.path.join(path, f"'{name}'.xml")
         
         try:
+            # Создание корневого элемента XML-документа
             root = ET.Element("Галерея1")
+            # Генерация уникального идентификатора секции на основе счетчика
             section_id = str(self.spinbx_new)
+            # Добавление подэлемента (секции) к корневому элементу с уникальным идентификатором
             element1_1=ET.SubElement(root, 'Секция', {"id": section_id}) # для Галереи
-            xml_content = ET.tostring(root, encoding="unicode", method="xml") # Преобразуем XML-дерево в строку для логирования
+            # Преобразуем XML-дерево в строку для логирования
+            xml_content = ET.tostring(root, encoding="unicode", method="xml") 
+            # Сохранение XML-дерева в файл с указанием кодировки и декларации
             ET.ElementTree(root).write(filepath, encoding="utf-8", xml_declaration=True) 
             self.log_action(f"Содержимое файла '{filepath}':\n\n{xml_content}")
         except Exception as e:
@@ -128,7 +134,9 @@ class XmlWindow(QtWidgets.QDialog):
             return
         
         try:
+            # Загрузка XML-дерева из файла
             tree = ET.parse(filename)
+            # Получение корневого элемента XML-документа
             root = tree.getroot()
             
         # Функционал для Галереи
@@ -138,7 +146,9 @@ class XmlWindow(QtWidgets.QDialog):
                 self.show_error(f"Секция с ID '{section_id}' не найдена.")
                 return
         
+            # Добавление нового подэлемента в найденную секцию
             element1_1_1 = ET.SubElement(target_section, tag)
+            # Установка текста внутри нового элемента
             element1_1_1.text = text
         
         # Функционал не для Галереи 
@@ -146,6 +156,7 @@ class XmlWindow(QtWidgets.QDialog):
             #element1_1_1.text = text
             #root.append(element1_1_1)
 
+            # Сохранение обновленного XML-дерева обратно в файл
             tree.write(filename, encoding="utf-8", xml_declaration=True)
             self.log_action(f"Новые данные добавлены в секцию с ID '{section_id}' в файле: {filename}")
             self.lE_write_teg.setText("")
